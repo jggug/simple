@@ -8,6 +8,7 @@ class UrlMappings {
         }
       }
       "/display/$id"(controller:"page", action:"findByTitle")
+      "/create/$name"(controller:"page", action:"createPage")
       "500"(view:'/error')
 	}
 }

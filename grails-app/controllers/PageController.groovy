@@ -38,6 +38,15 @@ class PageController {
     }
   }
   
+  def createPage = {
+    //println params.name
+    def page = new Page()
+    page.properties = params
+    page.title=params.name
+    
+    render(view:"create", model:[page : page])
+  }
+  
 
   def delete = {
       def page = Page.get( params.id )

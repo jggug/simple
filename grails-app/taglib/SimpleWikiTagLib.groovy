@@ -6,7 +6,6 @@ class SimpleWikiTagLib {
   def show = {attrs, body ->
     def content = body()
     content=content.replaceAll(/\r\n|\r|\n/,"\n")
-    //println wikiEngine
     if(wikiEngine){
       def text = wikiEngine.render(content.trim(), wikiContext)
       out<<text
