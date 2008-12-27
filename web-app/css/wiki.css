@@ -1,0 +1,58 @@
+.info {
+    background: #e2e0ff url("../images/icon-info.png") 13px 12px no-repeat;
+    padding: 10px 10px 10px 39px;
+    margin:10px 10px;
+}
+
+.warning {
+    background: #ffdede url("../images/icon-info.png") 13px 12px no-repeat;
+    padding: 10px 10px 15px 39px;
+    margin:10px 10px;
+}
+
+.note {
+    background: #fefecc url("../images/icon-info.png") 13px 12px no-repeat;
+    padding: 10px 10px 10px 39px;
+    margin:10px 10px;
+}
+
+.code {
+    background-color: #efefef;
+    border: 1px dashed #c5c5c5;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 20px;
+}
+
+.code pre {
+    font-family: Monaco, "Lucida Console", "Bitstream Vera Sans Mono", monospace;
+}
+
+code {
+    font-family: Monaco, "Lucida Console", "Bitstream Vera Sans Mono", monospace;
+}
+
+strong {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+
+th, td {
+border: 0px solid #000000;
+}
+
+.wikiTable {
+  border-collapse:collapse;
+  margin:5px;
+}
+.wikiRowTh {
+  background-color:#F0F0F0;
+  border:1px solid #CCCCCC;
+  padding:3px 4px;
+  text-align:center;
+}
+.wikiRowTd {
+  border:1px solid #CCCCCC;
+  padding:3px 4px;
+}
