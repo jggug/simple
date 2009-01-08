@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'wiki.css')}" />
   <link rel="shortcut icon" href="${createLinkTo(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
   <g:layoutHead />
-  <g:javascript library="application" />			
+  <g:javascript library="application" />
 </head>
 <body>
   <div id="spinner" class="spinner" style="display:none;">
@@ -21,17 +21,22 @@
   <div id="custom-doc" class="yui-t2">
     <div id="hd">
       <div class="header_block">
+        <%/** ロゴブロック */%>
         <div class="logo">
           <a class="home" href="${createLinkTo(dir:'')}">
-           <span style="font-size:32px;">Simple Contents</span>
+           <span style="font-size:32px;">
+             <img src="http://grails.jp/images/logo.png" border="0" />
+             <!-- Simple Contents -->
+          </span>
           </a>
           <br/>
           <g:if test="${page}">
             <g:link controller="page" action="show" id="${page.id}">
-            <span style="font-size:16px;margin-left:20px;">${page.title}</span>
+            <span style="font-size:16px;margin-left:20px;font-weight:bold;">${page.title}</span>
             </g:link>
           </g:if>
         </div>
+        <%/** ツールバー */%>
         <div class="nav" align="right">
             <span class="menuButton">
               <g:link class="create" controller="page" action="create">新規ページ追加</g:link>
@@ -44,6 +49,7 @@
       </div>
     </div>
     <div id="bd">
+      <%/** メイン */%>
       <div id="yui-main">
         <div class="yui-b">
           <div class="yui-g">
@@ -51,17 +57,32 @@
           </div>
         </div>
       </div>
+      <%/** メニュー */%>
       <div class="yui-b">
         <g:set var="menu" value="${Page.findByTitle('menu')}" />
         <w:show>
           ${menu?.body}
         </w:show>
       </div>
-
+      <%/** 開発用メニュー */%>
+      <g:isLoggedIn>
+      <g:ifAnyGranted role="ROLE_ADMIN,ROLE_SUPERVISOR">
+      <div class="yui-b">
+        <h3>開発用メニュー</h3>
+        <ul>
+          <g:each var="c" in="${grailsApplication.controllerClasses}">
+                <li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
+          </g:each>
+        </ul>        
+      </div>
+      </g:ifAnyGranted>
+      </g:isLoggedIn>
+      
     </div>
+    <%/** フッター */%>
     <div id="ft" style="margin-top:10px;text-align:center;">
       <hr/>
-      &copy;2008 grails.jp
+      &copy;2008-2009 grails.jp
     </div>
   </div>
 </body>	
