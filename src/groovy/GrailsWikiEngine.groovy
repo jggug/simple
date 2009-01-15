@@ -1,4 +1,5 @@
 //package org.grails.wiki
+import org.codehaus.groovy.control.CompilerConfiguration
 
 import org.radeox.engine.BaseRenderEngine
 import org.radeox.api.engine.WikiRenderEngine
@@ -79,6 +80,8 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
                     loader.add(repository, new NoteMacro())
                     loader.add(repository, new InfoMacro())
                     loader.add(repository, new AnchorMacro())
+                    //GroovyMacro
+                    loader.add(repository, new GroovyMacro())
                 }
             }
             localFP.init();
@@ -193,6 +196,50 @@ public class AnchorMacro extends BaseMacro {
     }
 
 }
+
+public class GroovyMacro extends BaseMacro {
+    String getName() {"groovy"}
+    void execute(Writer writer, MacroParameter params) {
+      
+      if(params.content){
+        StringWriter out = new StringWriter();
+        StringWriter err = new StringWriter();
+        PrintWriter stdout = new PrintWriter(out);
+        PrintWriter stderr = new PrintWriter(err);
+
+        CompilerConfiguration cc = new CompilerConfiguration();
+        cc.setOutput(stdout)
+        cc.setSourceEncoding("utf-8");
+
+        def b = new Binding();
+        b.setVariable("out",stdout)
+        b.setVariable("err",stderr)
+        def shell = new GroovyShell(Thread.currentThread().getContextClassLoader(),b,cc)
+        def script = params.content.replaceAll("&#62;",">")
+        def result = ""
+        try {
+          Script parse = shell.parse(script)
+          parse.run()
+          stdout.flush()
+          result = out.toString()
+        } catch(Exception e) {
+          result = "<b>ERROR</b> ${e}"
+        } finally {
+          out.close()
+          err.close()
+          stdout.close()
+          stderr.close()
+        }
+        writer << "<pre>"
+        writer << result
+        writer << "</pre>"
+        writer << '<pre class="groovy">' << params.content << "</pre>"
+      }else{
+        writer <<""
+      }
+  }
+}
+
 
 class ItalicFilter extends RegexTokenFilter {
     public ItalicFilter() {
