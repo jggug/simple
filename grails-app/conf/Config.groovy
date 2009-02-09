@@ -75,7 +75,7 @@ log4j {
 
 simple.contents.toppage="top"
 simple.contents.menupage="menu"
-simple.contents.logoimg="http://192.168.20.16:8080/simple/images/logo.png"
+simple.contents.logoimg="http://grails.jp/images/logo.png"
 simple.contents.footer.copy="&copy;2008-2009 grails.jp"
 
 
