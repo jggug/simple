@@ -15,9 +15,15 @@ class PageController {
       page = Page.findByTitle( title )
     }
     if(!page) {
-        page = Page.findByTitle( toppage )
+      page = Page.findByTitle( toppage )
     }
-    render(view:"show", model:[page : page])
+    
+    if(page) {
+      render(view:"show", model:[page : page])
+    } else {
+      flash.message="トップページが見つかりませんでした、トップページを作成して下さい"
+      redirect(action:createPage,params:[name:toppage])
+    }
   }
   
   def createPage = {
