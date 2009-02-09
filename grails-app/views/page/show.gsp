@@ -20,13 +20,7 @@
                 </g:if>
             </div>
             <g:if test="${page.page}">
-              <div style="padding:3px;">
-              <a href="${createLinkTo(url:'/')}/display/${page.page.title}">
-                ${page.page.title?.encodeAsHTML()}</a>
-                &nbsp;>&nbsp;
-                <a href="${createLinkTo(url:'/')}/display/${page.title}">
-                ${page.title?.encodeAsHTML()}</a>
-              </div>
+              <w:topicPath page="${page}" />
             </g:if>
             <div class="infomation_bar">
               追加したユーザーは ${page.created?:"不明"} です。最後に編集したユーザーは ${page.updated?:"不明"}で、その日時は <g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${page.lastUpdated}"/> です。

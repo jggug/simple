@@ -97,6 +97,14 @@ class PageController {
     page.properties = params
     page.created =authUserDomain
     page.updated =authUserDomain
+    
+    // 親ページ指定が無かった場合は自動的にトップページの下に行く
+    if(!page.page) {
+      def topname = CH.config?.simple?.contents?.toppage
+      Page topPage=Page.findByTitle(topname)
+      if(topPage) page.page=topPage
+    }
+    
     if(!page.hasErrors() && page.save()) {
       flash.message = "Page ${page.title} created"
       redirect(uri:"${createLink(url:'/display')}/${page.title.encodeAsURL()}")

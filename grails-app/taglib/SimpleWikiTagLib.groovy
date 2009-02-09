@@ -15,4 +15,32 @@ class SimpleWikiTagLib {
     }
   }
   
+  def topicPath = { attrs, body ->
+    if(attrs.page) {
+      out << "<div class='topicPath'>"
+      def parentList=parentLink(attrs.page).reverse()
+      parentList.eachWithIndex{ title,idx ->
+        out << "<a href='${createLinkTo(url:'/')}/display/${title}'>"
+        out << title
+        out << "</a>"
+        if((parentList.size()-1)!=idx){
+          out << "&nbsp;>&nbsp;"
+        }
+      }
+      
+      out << "</div>"
+    }
+    println attrs
+  }
+
+  def parentLink(page) {
+    def ret=[]
+    if(page) {
+      ret << page.title?.encodeAsHTML()
+      parentLink(page.page).each{ ret << it }
+    }
+    
+    return ret
+  }
+  
 }
