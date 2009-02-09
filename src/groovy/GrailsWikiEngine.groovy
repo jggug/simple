@@ -39,9 +39,6 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
         super();
     }
 
-
-
-
     protected void init() {
       if (null == fp) {
           FilterPipe localFP = new FilterPipe(initialContext);
@@ -59,6 +56,7 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
                             NewlineFilter,
                             ParagraphFilter,
                             BoldFilter,
+                            SupFilter,
                             CodeFilter,
                             ItalicFilter,
                             LinkTestFilter,
@@ -76,6 +74,8 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
                 if(filter instanceof MacroFilter) {
                     MacroLoader loader = new MacroLoader()
                     def repository = filter.getMacroRepository()
+                    //ExcerptMacro
+                    loader.add(repository, new ExcerptMacro())
                     loader.add(repository, new WarningMacro())
                     loader.add(repository, new NoteMacro())
                     loader.add(repository, new InfoMacro())
@@ -113,7 +113,7 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
                 name = name[0..name.indexOf('#')-1]
             }
         
-            def page = Page.findByTitle(name)
+            def page = Page.findByTitle(name)//TODO 外部化
         
             return page != null
         }
@@ -159,7 +159,7 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
         def contextPath = initialContext.get(CONTEXT_PATH)
         contextPath = contextPath ?: "."
         
-        buffer <<  "<a href=\"$contextPath/create/$name\" class=\"createPageLink\">$view +</a>"
+        buffer <<  "<a href=\"$contextPath/create/$name\" class=\"createPageLink\">$view <sup>(add)</sup></a>"
     }
 
 }
@@ -183,6 +183,13 @@ public class InfoMacro extends BaseMacro {
     writer << '<blockquote class="info">' << params.content << "</blockquote>"
   }
 }
+//{excerpt}
+public class ExcerptMacro extends BaseMacro {
+    String getName() {"excerpt"}
+    void execute(Writer writer, MacroParameter params) {
+    writer << ''
+  }
+}
 public class AnchorMacro extends BaseMacro {
 
     String getName() { "anchor" }
@@ -200,7 +207,7 @@ public class AnchorMacro extends BaseMacro {
 public class GroovyMacro extends BaseMacro {
     String getName() {"groovy"}
     void execute(Writer writer, MacroParameter params) {
-      
+      println params.params
       if(params.content){
         StringWriter out = new StringWriter();
         StringWriter err = new StringWriter();
@@ -255,6 +262,14 @@ class BoldFilter extends RegexTokenFilter {
     }
     public void handleMatch(StringBuffer buffer, MatchResult result, FilterContext context) {
         buffer << "<strong class=\"bold\">${result.group(1)}</strong>"
+    }
+}
+class SupFilter extends RegexTokenFilter {
+    public SupFilter() {
+        super(/\^([^\n]*?)\^/);
+    }
+    public void handleMatch(StringBuffer buffer, MatchResult result, FilterContext context) {
+        buffer << "<sup>${result.group(1)}</sup>"
     }
 }
 class CodeFilter extends RegexTokenFilter {

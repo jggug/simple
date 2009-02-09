@@ -31,6 +31,12 @@ code {
     font-family: Monaco, "Lucida Console", "Bitstream Vera Sans Mono", monospace;
 }
 
+.groovy {
+  border: 1px dashed #999;
+  padding: 10px 10px 10px 10px;
+  margin:10px 10px;
+}
+
 strong {
   font-weight: bold;
 }
@@ -55,4 +61,25 @@ border: 0px solid #000000;
 .wikiRowTd {
   border:1px solid #CCCCCC;
   padding:3px 4px;
+}
+.head_bar {
+  background-color:#021235;
+  color:white;
+  padding: 5px 5px 5px 5px;
+  margin-bottom:5px;
+  text-align: right;
+}
+.pagetitle {
+  font-family:Arial,sans-serif;
+  font-size:22px;
+  font-weight:bold;
+}
+.infomation_bar {
+  font-size:10px;
+  color:#666666; 
+  text-align:right;
+  width:100%;
+  margin:10 0 0px 0;
+  padding:3 0 0px 0;
+  border-top:1px dashed #CCC;
 }

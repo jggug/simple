@@ -7,11 +7,11 @@
         <title>Edit Page</title>
     </head>
     <body>
-        <div class="nav">
+        <!-- <div class="nav">
             <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
             <span class="menuButton"><g:link class="list" action="list">Page List</g:link></span>
             <span class="menuButton"><g:link class="create" action="create">New Page</g:link></span>
-        </div>
+        </div> -->
         <div class="body">
             <h1>Edit Page</h1>
             <g:if test="${flash.message}">
@@ -46,17 +46,17 @@
                                 </td>
                             </tr> 
                         
-                            <tr class="prop">
+                            <!-- <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="page">Page:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:page,field:'page','errors')}">
                                     <g:select optionKey="id" from="${Page.list()}" name="page.id" value="${page?.page?.id}" noSelection="['null':'']"></g:select>
                                 </td>
-                            </tr> 
+                            </tr>  -->
                         
                         
-                            <tr class="prop">
+                            <!-- <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="pages">Pages:</label>
                                 </td>
@@ -70,7 +70,7 @@
 <g:link controller="page" params="['page.id':page?.id]" action="create">Add Page</g:link>
 
                                 </td>
-                            </tr> 
+                            </tr>  -->
                         
                         </tbody>
                     </table>

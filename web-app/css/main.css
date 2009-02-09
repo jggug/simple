@@ -24,14 +24,29 @@ a:link, a:visited, a:hover {
 } 
 
 h1 {
-  background-color:#F0F0F0;
+/*  background-color:#F0F0F0;
   border-bottom:1px solid #3C78B5;
   color:#003366;
   font-size:24px;
   font-weight:bold;
   line-height:normal;
   margin:36px 0 4px;
-  padding:2px;
+  padding:2px;*/
+  color:#002445;
+  font-family:Arial,sans-serif;
+  font-size:2.2em;
+  font-size-adjust:none;
+  font-stretch:normal;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:700;
+  left:0;
+  letter-spacing:-0.01em;
+  line-height:2.2em;
+  margin:10px 0;
+  position:relative;
+  text-align:left;
+  top:0;
 }
 h2 {
     color: #006dba;
@@ -74,8 +89,6 @@ select {
    padding: 2px 2px 2px 0;
 }
 textarea {
-	width: 250px;
-	height: 150px;
 	vertical-align: top;
 }
 
@@ -118,6 +131,11 @@ input:focus, select:focus, textarea:focus {
 }
 .menuButton a.create {
     background: url(../images/skin/database_add.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.edit {
+    background: url(../images/skin/database_edit.png) center left no-repeat;
     color: #333;
     padding-left: 25px;
 }
@@ -294,5 +312,4 @@ th.desc a {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
-
 

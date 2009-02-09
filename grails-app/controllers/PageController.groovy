@@ -1,75 +1,68 @@
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 class PageController {
-  def index = { redirect(action:list,params:params) }
+  //def index = { redirect(action:findByTitle,params:params) }
 
-  // the delete, save and update actions only accept POST requests
-  def allowedMethods = [delete:'POST', save:'POST', update:'POST']
+  //def wikiEngine
+  //def wikiContext
 
-  def list = {
-      if(!params.max) params.max = 10
-      [ pageList: Page.list( params ) ]
-  }
-
-  def show = {
-      def page = Page.get( params.id )
-
-      if(!page) {
-          flash.message = "Page not found with id ${params.id}"
-          redirect(action:list)
-      }
-      else { return [ page : page ] }
-  }
-  
-  
-  def wikiEngine
-  def wikiContext
   def findByTitle = {
-    println "==>"+params
-   def title = params.id?:"top"
-    def page = Page.findByTitle( title )
+    def toppage = CH.config?.simple?.contents?.toppage
+    Page page
+    if(params.pageId){
+      page = Page.get(params.pageId)
+    }else{
+      def title = params.id?:toppage
+      page = Page.findByTitle( title )
+    }
     if(!page) {
-        flash.message = "Page not found with id ${params.id}"
-        redirect(action:list)
+        page = Page.findByTitle( toppage )
     }
-    else { 
-      //def content = wikiEngine.render(page.body.trim(), wikiContext)
-      //println content
-      render(view:"show", model:[page : page])
-      //return [ page : page ] 
-    }
+    render(view:"show", model:[page : page])
   }
   
   def createPage = {
-    //println params.name
     def page = new Page()
-    page.properties = params
-    page.title=params.name
-    
-    render(view:"create", model:[page : page])
+    if(params["addChild"]==""){
+      page.page=Page.get(params.name)
+    }else{
+      page.title=params.name!="new"?params.name:""
+    }
+    render(view:"editPage", model:[page : page,mode:"create"])
   }
   
+  def editPage = {
+    def page = Page.get( params.id )
+    if(!page) {
+      flash.message = "Page not found with id ${params.id}"
+      redirect(action:findByTitle)
+    }else {
+      render(view:"editPage", model:[page : page,mode:"edit"])
+    }
+  }
 
   def delete = {
       def page = Page.get( params.id )
       if(page) {
+        if(page.pages.size()>0){
+          flash.message = "子ページが存在するため、ページ「${page}」を削除できません."
+          render(view:"editPage", model:[page : page,mode:"edit"])
+          return
+        }else if(page.page){
+          def parent = Page.get(page.page.id)
+          parent.removeFromPages(page)
           page.delete()
-          flash.message = "Page ${params.id} deleted"
-          redirect(action:list)
+          flash.message =""
+          redirect(uri:"${createLink(url:'/display')}/${parent.title.encodeAsURL()}")
+          return
+        }else{
+          page.delete()
+          flash.message = ""
+        }
+        redirect(action:findByTitle)
       }
       else {
-          flash.message = "Page not found with id ${params.id}"
-          redirect(action:list)
-      }
-  }
-
-  def edit = {
-      def page = Page.get( params.id )
-
-      if(!page) {
-          flash.message = "Page not found with id ${params.id}"
-          redirect(action:list)
-      }
-      else {
-          return [ page : page ]
+          flash.message = "Page not found with id ${params}"
+          redirect(action:findByTitle)
       }
   }
 
@@ -77,9 +70,10 @@ class PageController {
       def page = Page.get( params.id )
       if(page) {
           page.properties = params
+          page.updated =authUserDomain
           if(!page.hasErrors() && page.save()) {
               flash.message = "Page ${params.id} updated"
-              redirect(action:show,id:page.id)
+              redirect(uri:"${createLink(url:'/display')}/${page.title.encodeAsURL()}")
           }
           else {
               render(view:'edit',model:[page:page])
@@ -91,20 +85,18 @@ class PageController {
       }
   }
 
-  def create = {
-      def page = new Page()
-      page.properties = params
-      return ['page':page]
-  }
-
   def save = {
-      def page = new Page(params)
-      if(!page.hasErrors() && page.save()) {
-          flash.message = "Page ${page.id} created"
-          redirect(action:show,id:page.id)
-      }
-      else {
-          render(view:'create',model:[page:page])
-      }
+    def page = new Page()
+    //println authUserDomain
+    page.properties = params
+    page.created =authUserDomain
+    page.updated =authUserDomain
+    if(!page.hasErrors() && page.save()) {
+      flash.message = "Page ${page.title} created"
+      redirect(uri:"${createLink(url:'/display')}/${page.title.encodeAsURL()}")
+    }
+    else {
+        render(view:'create',model:[page:page])
+    }
   }
 }

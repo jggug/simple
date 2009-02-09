@@ -1,10 +1,7 @@
-import org.springframework.cache.ehcache.EhCacheFactoryBean
-//import org.grails.content.notifications.ContentAlertStack
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
-//import org.grails.wiki.GrailsWikiEngineFactoryBean
 import org.radeox.engine.context.BaseInitialRenderContext
+import org.springframework.cache.ehcache.EhCacheFactoryBean
 
-// Place your Spring DSL code here
 beans = {
   textCache(EhCacheFactoryBean) {
       timeToLive = 300

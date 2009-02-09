@@ -34,10 +34,10 @@ grails.enable.native2ascii = true
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "http://grails.jp"
+        grails.serverURL = "http://grails.jp/simple"
     }
     test {
-        grails.serverURL = "http://grails.jp"
+        grails.serverURL = "http://localhost:8080/simple"
     }
     development {
         grails.serverURL = "http://localhost:8080/simple"
@@ -73,9 +73,10 @@ log4j {
     additivity.StackTrace=false
 }
 
+simple.contents.toppage="top"
+simple.contents.menupage="menu"
+simple.contents.logoimg="http://192.168.20.16:8080/simple/images/logo.png"
+simple.contents.footer.copy="&copy;2008-2009 grails.jp"
 
-
-
-//log4j.logger.org.springframework.security='off,stdout'
 
 //log4j.logger.org.springframework.security='off,stdout'

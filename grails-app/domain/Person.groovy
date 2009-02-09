@@ -30,4 +30,7 @@ class Person {
 		passwd(blank: false)
 		enabled()
 	}
+	String toString(){
+	  username
+	}
 }

@@ -83,7 +83,7 @@ security {
 	defaultRole = 'ROLE_USER'
 
 	/** use basicProcessingFilter */
-	basicProcessingFilter = false
+	basicProcessingFilter = true
 	/** use switchUserProcessingFilter */
 	switchUserProcessingFilter = false
 }

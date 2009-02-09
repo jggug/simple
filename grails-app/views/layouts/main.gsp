@@ -1,3 +1,4 @@
+<% def config = org.codehaus.groovy.grails.commons.ConfigurationHolder.getConfig() %>
 <html>
 <head>
   <title><g:layoutTitle default="Grails" /></title>
@@ -16,35 +17,52 @@
 </head>
 <body>
   <div id="spinner" class="spinner" style="display:none;">
-      <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
+    <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
   </div>	
   <div id="custom-doc" class="yui-t2">
     <div id="hd">
       <div class="header_block">
+        <div class="head_bar">
+          <div style="float:left;">
+            <span style="font-size:10px;">ようこそ </span>
+            <g:loggedInUserInfo field="userRealName">ゲスト</g:loggedInUserInfo><span style="font-size:10px;">さん</span>
+          </div>
+          <g:isLoggedIn>
+          <div style="font-size:10px;">
+            &nbsp;&nbsp;<g:link controller="logout" style="color:white;">(ログアウト)</g:link>
+            [<g:link controller="register" action="edit" style="color:white;">登録情報編集</g:link>]
+          </div>
+          </g:isLoggedIn>
+          <g:isNotLoggedIn>
+            <div style="font-size:10px;">
+              <g:link controller="login" style="color:white;">(ログイン)</g:link>
+              [<g:link controller="register" style="color:white;">登録</g:link>]
+            </div>
+          </g:isNotLoggedIn>
+
+        </div>
         <%/** ロゴブロック */%>
         <div class="logo">
           <a class="home" href="${createLinkTo(dir:'')}">
            <span style="font-size:32px;">
-             <img src="http://grails.jp/images/logo.png" border="0" />
-             <!-- Simple Contents -->
-          </span>
+             <img src="${config.simple.contents.logoimg}" border="0" align="middle"/>
+           </span>
           </a>
-          <br/>
           <g:if test="${page}">
-            <g:link controller="page" action="show" id="${page.id}">
-            <span style="font-size:16px;margin-left:20px;font-weight:bold;">${page.title}</span>
-            </g:link>
+            <a href="${createLinkTo(url:'/')}/display/${page.title}">
+            <span style="font-size:22px;font-weight:bold;">${page.title}</span>
+            </a>
           </g:if>
         </div>
         <%/** ツールバー */%>
-        <div class="nav" align="right">
+        <!-- <div class="nav" align="right">
             <span class="menuButton">
               <g:link class="create" controller="page" action="create">新規ページ追加</g:link>
             </span>
             <g:if test="${page}">
-              <g:link class="edit" controller="page" action="edit" id="${page.id}">編集</g:link>
+              <a href="${createLinkTo(url:'/')}/edit/${page.id}">編集</a>
             </g:if>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -58,14 +76,17 @@
         </div>
       </div>
       <%/** メニュー */%>
-      <div class="yui-b">
-        <g:set var="menu" value="${Page.findByTitle('menu')}" />
+      <g:if test="${config.simple.contents.menupage}">
+      <div class="yui-b" style="margin-top:20px;">
+        <g:set var="menu" value="${Page.findByTitle(config.simple.contents.menupage)}" />
         <w:show>
           ${menu?.body}
         </w:show>
+        
       </div>
+      </g:if>
       <%/** 開発用メニュー */%>
-      <g:isLoggedIn>
+      <!-- <g:isLoggedIn>
       <g:ifAnyGranted role="ROLE_ADMIN,ROLE_SUPERVISOR">
       <div class="yui-b">
         <h3>開発用メニュー</h3>
@@ -76,13 +97,13 @@
         </ul>        
       </div>
       </g:ifAnyGranted>
-      </g:isLoggedIn>
+      </g:isLoggedIn> -->
       
     </div>
     <%/** フッター */%>
     <div id="ft" style="margin-top:10px;text-align:center;">
       <hr/>
-      &copy;2008-2009 grails.jp
+      ${config.simple.contents.footer.copy}
     </div>
   </div>
 </body>	
