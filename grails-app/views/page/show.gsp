@@ -42,7 +42,7 @@
             <g:if test="${page.pages.size()>0}">
             <div style="width:100%;border:1px solid #ccc">
               <ul style="margin-top:5px">
-              <g:each var="p" in="${page.pages}">
+              <g:each var="p" in="${page.pages?.sort{it.title}}">
                   <li>
                     <a href="${createLinkTo(url:'/')}/display/${p.title}">
                     ${p.title?.encodeAsHTML()}</a>
