@@ -20,7 +20,7 @@ def modeString=(mode=="edit")?"編集":"追加"
     </div>
     </g:hasErrors>
     <g:form action="save" method="post" >
-    <g:if test="${page.id}">
+      <g:if test="${page.id}">
       <input type="hidden" name="id" value="${page?.id}" />
     </g:if>
     <div class="dialog">
@@ -31,7 +31,7 @@ def modeString=(mode=="edit")?"編集":"追加"
       </div>
       <div>
         <div>コンテンツ</div>
-        <textarea style="width:100%;height:300px" name="body">${fieldValue(bean:page, field:'body')}</textarea>
+        <textarea id="contents" style="width:100%;height:300px" name="body">${fieldValue(bean:page, field:'body')}</textarea>
         
       </div>
 
@@ -52,8 +52,20 @@ def modeString=(mode=="edit")?"編集":"追加"
       <g:else>
         <span class="button"><input class="save" type="submit" value="Create" /></span>
       </g:else>
+      <span class="button">
+        <input type="button" onclick="updatePreview();return false;" class="preview" value="Preview" />          
+      </span>
     </div>
     </g:form>
+    
+    <script language="javascript">
+      var updatePreview=function(){
+        var params=$("contents").serialize();
+        new Ajax.Updater("preview","${createLink(controller:'page',action:'preview')}",
+          {asynchronous:true,evalScripts:true,parameters:params});
+      };
+    </script>
+    <div id="preview"></div>
   </div>
 </body>
 </html>

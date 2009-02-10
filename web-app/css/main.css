@@ -219,6 +219,10 @@ td, th {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
+.buttons input.preview {
+    background: transparent url(../images/eye.png) 5px 50% no-repeat;
+    padding-left: 28px;
+}
 
 .topicPath {
   padding:3px;

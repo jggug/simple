@@ -135,4 +135,8 @@ class PageController {
       }
     }
   }
+  
+  def preview ={
+    [msg:params.body]
+  }
 }
