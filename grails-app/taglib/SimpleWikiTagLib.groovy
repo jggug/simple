@@ -5,9 +5,10 @@ class SimpleWikiTagLib {
 
   def show = {attrs, body ->
     def content = body()
+    def pageId = attrs.pageId?:"0";
     content=content.replaceAll(/\r\n|\r|\n/,"\n")
     if(wikiEngine){
-      def text = wikiEngine.render(content.trim(), wikiContext)
+      def text = wikiEngine.render(content.trim(),""+pageId, wikiContext)
       out<<text
     }else{
       println "wikiEngine ERROR"

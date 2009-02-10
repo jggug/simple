@@ -29,11 +29,10 @@ class PageController {
   
   def createPage = {
     def page = new Page()
-    if(params["addChild"]==""){
-      page.page=Page.get(params.name)
-    }else{
-      page.title=params.name!="new"?params.name:""
-    }
+    
+    if(params["addChildTo"]!="") page.page=Page.get(params.addChildTo)
+    page.title=params.name!="new"?params.name:""
+
     render(view:"editPage", model:[page : page,mode:"create"])
   }
   

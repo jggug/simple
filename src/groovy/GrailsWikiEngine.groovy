@@ -19,6 +19,7 @@ import org.radeox.filter.*
 import org.radeox.util.Encoder
 import org.springframework.beans.BeanWrapperImpl
 import java.lang.reflect.Field
+import org.radeox.api.engine.context.RenderContext
 
 /**
 * @author Graeme Rocher
@@ -30,6 +31,8 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
 
     static CONTEXT_PATH = "contextPath"
     static CACHE = "cache"
+    
+    def pageId
 
     public GrailsWikiEngine(InitialRenderContext initialRenderContext) {
         super(initialRenderContext);
@@ -38,7 +41,12 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
     public GrailsWikiEngine() {
         super();
     }
-
+    
+    public String render(String content, String pageId, RenderContext context) {
+      this.pageId=pageId
+      return this.render(content,context);
+    }
+    
     protected void init() {
       if (null == fp) {
           FilterPipe localFP = new FilterPipe(initialContext);
@@ -159,8 +167,8 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
     public void appendCreateLink(StringBuffer buffer, String name, String view) {
         def contextPath = initialContext.get(CONTEXT_PATH)
         contextPath = contextPath ?: "."
-        
-        buffer <<  "<a href=\"$contextPath/create/$name\" class=\"createPageLink\">$view <sup>(add)</sup></a>"
+        def addChildTo = (pageId!="0")?"?addChildTo=$pageId":""
+        buffer <<  "<a href=\"$contextPath/create/$name$addChildTo\" class=\"createPageLink\">$view <sup>(add)</sup></a>"
     }
 
 }

@@ -28,14 +28,14 @@
 
 
             <div class="wiki-content" style="width:100%;margin:15px 0 20px 0;">
-              <w:show>
+              <w:show pageId="${page?.id}">
                 ${page?.body}
               </w:show>
             </div>
 
             <div style="width:100%;margin:10 0 10 0;padding:10 0 1 0;border-bottom:2px solid #3C78B5">
               子ページ 
-                <a href="${createLinkTo(url:'/')}/create/${page.id}?addChild">
+                <a href="${createLinkTo(url:'/')}/create/new?addChildTo=${page.id}">
                   <img src="${createLinkTo(dir:'images',file:'skin/database_add.png')}" border="0"/>追加
                 </a>
             </div>

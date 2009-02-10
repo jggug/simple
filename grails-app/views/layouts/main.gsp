@@ -81,7 +81,7 @@
       <g:if test="${config.simple.contents.menupage}">
       <div class="yui-b">
         <g:set var="menu" value="${Page.findByTitle(config.simple.contents.menupage)}" />
-        <w:show>
+        <w:show pageId="${menu?.id}">
           ${menu?.body}
         </w:show>
         
