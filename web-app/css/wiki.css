@@ -83,3 +83,48 @@ border: 0px solid #000000;
   padding:3 0 0px 0;
   border-top:1px dashed #CCC;
 }
+
+/* code formatting */
+.code {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 5px 5px 5px 5px;
+  color: inherit;
+  background-color: #F0F0F0;
+  border: 1px dashed black;
+  font-family: courier, courier new, monospace;
+  font-size: 12px;
+  line-height: 100%;
+  white-space: pre;
+  width: 98%;
+  overflow: auto;
+  overflow: scroll -moz-scrollbars-horizontal;
+  overflow-x: auto;
+}
+
+
+.java-keyword {
+  font-weight: bold;
+  color: #0000aa;
+  background-color: inherit;
+}
+
+.java-object {
+  color: #000088;
+  background-color: inherit;
+}
+
+.java-quote {
+  color: #00aa00;
+  background-color: inherit;
+}
+
+.xml-keyword {
+  font-weight: bold;
+}
+
+.xml-tag {
+  color: #0000aa;
+  background-color: inherit;
+}
+
