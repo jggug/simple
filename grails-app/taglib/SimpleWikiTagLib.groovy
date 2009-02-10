@@ -31,7 +31,6 @@ class SimpleWikiTagLib {
       
       out << "</div>"
     }
-    println attrs
   }
 
   def parentLink(page) {
