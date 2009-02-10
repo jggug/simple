@@ -26,7 +26,7 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+			url = "jdbc:hsqldb:file:/opt/grails_apps_tmp/simple/prodDb;shutdown=true"
 		}
 	}
 }
