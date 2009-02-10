@@ -58,8 +58,8 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
                             BoldFilter,
                             SupFilter,
                             UnderlineFilter,
-                            CodeFilter,
                             ItalicFilter,
+                            CodeFilter,
                             LinkTestFilter,
                             ImageFilter,
                             MarkFilter,
@@ -250,7 +250,7 @@ public class GroovyMacro extends BaseMacro {
 
 class ItalicFilter extends RegexTokenFilter {
     public ItalicFilter() {
-        super(/\s_([^\n]*?)_\s/);
+        super(/_([^\n]*?)_/);
     }
     public void handleMatch(StringBuffer buffer, MatchResult result, FilterContext context) {
         buffer << " <em class=\"italic\">${result.group(1)}</em> "
