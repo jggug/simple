@@ -1,4 +1,5 @@
 <% def config = org.codehaus.groovy.grails.commons.ConfigurationHolder.getConfig() %>
+<g:set var="feedUrl" value="${config.grails.serverURL+'/page/lastUpdate'}" />
 <html>
 <head>
   <title><g:layoutTitle default="Grails" /></title>
@@ -12,6 +13,7 @@
   <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'main.css')}" />
   <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'wiki.css')}" />
   <link rel="shortcut icon" href="${createLinkTo(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
+  <link href="${feedUrl}" title="RSS 2.0" type="application/rss+xml" rel="alternate"/>
   <g:layoutHead />
   <g:javascript library="application" />
 </head>
@@ -77,21 +79,26 @@
       </div>
       <%/** メニュー */%>
       <g:if test="${config.simple.contents.menupage}">
-      <div class="yui-b" style="margin-top:20px;">
+      <div class="yui-b">
         <g:set var="menu" value="${Page.findByTitle(config.simple.contents.menupage)}" />
         <w:show>
           ${menu?.body}
         </w:show>
         
         <%/** 更新履歴 */%>
-        <g:set var="feedUrl" value="${config.grails.serverURL+'/page/lastUpdate'}" />
-        <a href="${feedUrl}" style="float:right"><img src="${createLinkTo(dir:'images',file:'rssfeed.gif')}" /></a>
-        <div>更新履歴</div>
+        <div class="rss_title">
+          更新履歴 
+            <a href="${feedUrl}">
+              <img src="${createLinkTo(dir:'images',file:'rssfeed.gif')}" border="0"/>
+            </a>
+        </div>
         <f:feed url="${feedUrl}">
           <g:each in="${feed.entries}" var="page">
             <div class="recentlyUpdatedItem">
-              <a href="${page.link}">${page.title}</a><br/>
-              ${f.dateFormat(format:"yyyy/MM/dd HH:mm",date:page.publishedDate)}/${page.author}
+              <a href="${page.link}">${page.title}</a>
+              <div style="font-size:8px;text-align:right;">
+                ${f.dateFormat(format:"yyyy/MM/dd HH:mm",date:page.publishedDate)}/by ${page.author}
+              </div>
             </div>
           </g:each>
         </f:feed>

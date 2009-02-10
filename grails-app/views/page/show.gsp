@@ -8,7 +8,7 @@
     </head>
     <body>
       <div class="body-block">
-
+        
             <div class="nav" align="right">
                 <span class="menuButton">
                   <a href="${createLinkTo(url:'/')}/create/new" class="create">新規ページ追加</a>

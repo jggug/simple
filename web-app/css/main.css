@@ -227,5 +227,12 @@ td, th {
 .recentlyUpdatedItem {
   padding:2px;
   margin:2px;
-  border:1px solid #888;
+  border:0px solid #888;
+}
+.rss_title {
+  width:100%;
+  margin:10 0 10 0;
+  padding:0 0 0 3;
+  border-bottom:2px solid #3C78B5;
+  border-left:7px solid #3C78B5;
 }
