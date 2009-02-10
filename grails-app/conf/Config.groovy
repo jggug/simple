@@ -72,10 +72,10 @@ log4j {
     }
     additivity.StackTrace=false
 }
-
+simple.contents.title="Grails.jp"
 simple.contents.toppage="top"
 simple.contents.menupage="menu"
-simple.contents.logoimg="http://grails.jp/images/logo.png"
+simple.contents.logoimg="http://grails.jp/images/logo_2.png"
 simple.contents.footer.copy="&copy;2008-2009 grails.jp"
 
 

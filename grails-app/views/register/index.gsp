@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Grails Wiki ユーザー登録</title>
+    <title>${config.simple.contents.title} Wiki ユーザー登録</title>
     <link rel="stylesheet" type="text/css" 
       href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
     <link rel="stylesheet" type="text/css" 

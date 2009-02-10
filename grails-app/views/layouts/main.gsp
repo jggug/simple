@@ -2,7 +2,9 @@
 <g:set var="feedUrl" value="${config.grails.serverURL+'/page/lastUpdate'}" />
 <html>
 <head>
-  <title><g:layoutTitle default="Grails" /></title>
+  <title>${config.simple.contents.title} - <g:layoutTitle default="Wiki"/>
+    
+  </title>
   <link rel="stylesheet" type="text/css" 
     href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
   <link rel="stylesheet" type="text/css" 

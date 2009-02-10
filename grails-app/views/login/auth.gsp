@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-    <title>Grails Wiki ログイン</title>
+    <title>${config.simple.contents.title} Wiki ログイン</title>
     <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'main.css')}" />
 <style type='text/css' media='screen'>
 #login {
