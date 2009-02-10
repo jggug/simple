@@ -57,6 +57,7 @@ class GrailsWikiEngine extends BaseRenderEngine implements WikiRenderEngine{
                             ParagraphFilter,
                             BoldFilter,
                             SupFilter,
+                            UnderlineFilter,
                             CodeFilter,
                             ItalicFilter,
                             LinkTestFilter,
@@ -207,7 +208,6 @@ public class AnchorMacro extends BaseMacro {
 public class GroovyMacro extends BaseMacro {
     String getName() {"groovy"}
     void execute(Writer writer, MacroParameter params) {
-      println params.params
       if(params.content){
         StringWriter out = new StringWriter();
         StringWriter err = new StringWriter();
@@ -262,6 +262,14 @@ class BoldFilter extends RegexTokenFilter {
     }
     public void handleMatch(StringBuffer buffer, MatchResult result, FilterContext context) {
         buffer << "<strong class=\"bold\">${result.group(1)}</strong>"
+    }
+}
+class UnderlineFilter extends RegexTokenFilter {
+    public UnderlineFilter() {
+        super(/\+([^\n]*?)\+/);
+    }
+    public void handleMatch(StringBuffer buffer, MatchResult result, FilterContext context) {
+        buffer << "<u>${result.group(1)}</u>"
     }
 }
 class SupFilter extends RegexTokenFilter {
@@ -386,7 +394,7 @@ class HeaderFilter extends RegexTokenFilter{
 class TableFilter extends RegexTokenFilter {
 
     public TableFilter() {
-        super(/(?m)^(\|(.|\n)+\|\n[^\|])/)
+        super(/(?m)^(\|(.|\n)+[\|\n|\|])/)
     }
 
     public void handleMatch(StringBuffer stringBuffer, MatchResult matchResult, FilterContext filterContext) {
