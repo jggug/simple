@@ -68,11 +68,12 @@
           <input type='password' class='text_' name='j_password' id='j_password' />
         </p>
         <p>
-          <label for='remember_me'>Remember me</label>
+          <label for='remember_me'>記憶する</label>
           <input type='checkbox' class='chk' id='remember_me' name='_spring_security_remember_me'>
         </p>
         <p>
           <input type='submit' value='Login' />
+          新規登録は<g:link controller="register">こちら</g:link>
         </p>
       </form>
       </div>

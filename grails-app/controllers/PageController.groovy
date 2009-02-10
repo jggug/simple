@@ -22,7 +22,7 @@ class PageController {
     if(page) {
       render(view:"show", model:[page : page])
     } else {
-      flash.message="トップページが見つかりませんでした、トップページを作成して下さい"
+      if(authUserDomain) flash.message="トップページが見つかりませんでした、トップページを作成して下さい"
       redirect(action:createPage,params:[name:toppage])
     }
   }
