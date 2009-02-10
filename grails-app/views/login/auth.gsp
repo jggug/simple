@@ -45,6 +45,9 @@
 #login .logo {
   margin: 20px 0px 40px 0px;
 }
+.newEntry{
+  font-size:12px;
+}
 </style>
 <g:javascript library="application" />
   </head>
@@ -73,6 +76,8 @@
         </p>
         <p>
           <input type='submit' value='Login' />
+        </p>
+        <p class="newEntry">
           新規登録は<g:link controller="register">こちら</g:link>
         </p>
       </form>
