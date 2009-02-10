@@ -3,15 +3,12 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main" />
-    <title>User Profile</title>
+    <title>ユーザー情報</title>
   </head>
   <body>
-    <div class="nav">
-      <span class="menuButton"><a href="${createLinkTo(dir:'')}">Home</a></span>
-    </div>
     
     <div class="body">
-      <h1>User Profile</h1>
+      <h2>ユーザー情報</h2>
       <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
       </g:if>
@@ -20,35 +17,28 @@
           <tbody>
 
             <tr class="prop">
-              <td valign="top" class="name">Login Name:</td>
+              <td valign="top" class="name">ログインアカウント:</td>
               <td valign="top" class="value">
               	${person.username?.encodeAsHTML()}
               </td>
             </tr>
                    
             <tr class="prop">
-              <td valign="top" class="name">Full Name:</td>
+              <td valign="top" class="name">ユーザー名:</td>
               <td valign="top" class="value">
                 ${person.userRealName?.encodeAsHTML()}
               </td>
             </tr>
-                   
-            <tr class="prop">
-              <td valign="top" class="name">Enabled:</td>
-              <td valign="top" class="value">
-                ${person.enabled?.encodeAsHTML()}
-              </td>
-            </tr>
 
             <tr class="prop">
-              <td valign="top" class="name">Email:</td>
+              <td valign="top" class="name">メールアドレス:</td>
               <td valign="top" class="value">
                 ${person.email?.encodeAsHTML()}
               </td>
             </tr>
                    
             <tr class="prop">
-              <td valign="top" class="name">Show Email:</td>
+              <td valign="top" class="name">メールアドレス表示:</td>
               <td valign="top" class="value">
                 ${person.emailShow?.encodeAsHTML()}
               </td>

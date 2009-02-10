@@ -3,14 +3,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main" />
-    <title>Edit Profile</title>
+    <title>ユーザー情報</title>
   </head>
   <body>
-    <div class="nav">
-      <span class="menuButton"><a href="${createLinkTo(dir:'')}">Home</a></span>
-    </div>
     <div class="body">
-      <h1>Edit Profile</h1>
+      <h2>ユーザー情報</h21>
       <g:if test="${flash.message}">
         <div class="message">${flash.message}</div>
       </g:if>
@@ -27,9 +24,9 @@
             <tbody>
 
         <tr class='prop'>
-          <td valign='top' class='name'>
-            <label for='username'>Login Name:</label>
-          </td>
+          <th valign='top' class='name'>
+            <label for='username'>ログインアカウント:</label>
+          </th>
           <td valign='top'
             class='value ${hasErrors(bean:person,field:'username','errors')}'>
           <input type="hidden" name='username'
@@ -40,7 +37,7 @@
 
 			  <tr class='prop'>
 			    <td valign='top' class='name'>
-			      <label for='userRealName'>Full Name:</label>
+			      <label for='userRealName'>ユーザー名:</label>
 			    </td>
 				<td valign='top'
 				    class='value ${hasErrors(bean:person,field:'userRealName','errors')}'>
@@ -51,7 +48,7 @@
 
         <tr class='prop'>
           <td valign='top' class='name'>
-            <label for='passwd'>Password:</label>
+            <label for='passwd'>パスワード:</label>
           </td>
           <td valign='top'
             class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
@@ -61,7 +58,7 @@
 
         <tr class='prop'>
           <td valign='top' class='name'>
-            <label for='enabled'>Confirm Password:</label>
+            <label for='enabled'>パスワード確認:</label>
           </td>
           <td valign='top'
             class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
@@ -72,7 +69,7 @@
 
 			  <tr class='prop'>
 			    <td valign='top' class='name'>
-			      <label for='email'>Email:</label>
+			      <label for='email'>メールアドレス:</label>
 			    </td>
 				<td valign='top'
 				    class='value ${hasErrors(bean:person,field:'email','errors')}'>
@@ -83,7 +80,7 @@
 
         <tr class='prop'>
           <td valign='top' class='name'>
-            <label for='emailShow'>Show Email:</label>
+            <label for='emailShow'>メールアドレス表示:</label>
           </td>
           <td valign='top' 
             class='value ${hasErrors(bean:person,field:'emailShow','errors')}'>

@@ -31,6 +31,6 @@ class Person {
 		enabled()
 	}
 	String toString(){
-	  username
+	  userRealName
 	}
 }

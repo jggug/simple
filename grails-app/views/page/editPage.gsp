@@ -32,8 +32,10 @@ def modeString=(mode=="edit")?"編集":"追加"
       <div>
         <div>コンテンツ</div>
         <textarea style="width:100%;height:300px" name="body">${fieldValue(bean:page, field:'body')}</textarea>
+        
       </div>
 
+      
       <g:if test="${page.page!=null}">
         <div>
         <div>親ページ</div>
