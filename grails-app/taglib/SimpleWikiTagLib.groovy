@@ -15,6 +15,7 @@ class SimpleWikiTagLib {
     }
   }
   
+  /** パンくずの表示 */
   def topicPath = { attrs, body ->
     if(attrs.page) {
       out << "<div class='topicPath'>"

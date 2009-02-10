@@ -83,6 +83,18 @@
           ${menu?.body}
         </w:show>
         
+        <%/** 更新履歴 */%>
+        <g:set var="feedUrl" value="${config.grails.serverURL+'/page/lastUpdate'}" />
+        <a href="${feedUrl}" style="float:right"><img src="${createLinkTo(dir:'images',file:'rssfeed.gif')}" /></a>
+        <div>更新履歴</div>
+        <f:feed url="${feedUrl}">
+          <g:each in="${feed.entries}" var="page">
+            <div class="recentlyUpdatedItem">
+              <a href="${page.link}">${page.title}</a><br/>
+              ${f.dateFormat(format:"yyyy/MM/dd HH:mm",date:page.publishedDate)}/${page.author}
+            </div>
+          </g:each>
+        </f:feed>
       </div>
       </g:if>
       <%/** 開発用メニュー */%>

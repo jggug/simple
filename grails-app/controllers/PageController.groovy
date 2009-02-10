@@ -1,4 +1,5 @@
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+
 class PageController {
   //def index = { redirect(action:findByTitle,params:params) }
 
@@ -111,6 +112,28 @@ class PageController {
     }
     else {
         render(view:'create',model:[page:page])
+    }
+  }
+  
+  /** 最終更新のRSSFeed */
+  def lastUpdate={
+    def contextPath=CH.config.grails.serverURL
+    def feedUrl=contextPath+"/page/lastUpdated"
+    def lastPages=Page.list(max:10,order:"lastUpdated")
+
+    render(feedType:"rss", feedVersion:"2.0") {
+      title="Simple LastUpdated"
+      link=feedUrl
+      description="最終更新履歴"
+
+      lastPages.each { page ->
+        entry(page.title){
+          author=page.updated ? page.updated.username : "不明"
+          publishedDate=page.lastUpdated
+          link=contextPath+"/display/${page.title}"
+          page.body
+        }
+      }
     }
   }
 }

@@ -223,3 +223,9 @@ td, th {
 .topicPath {
   padding:3px;
 }
+
+.recentlyUpdatedItem {
+  padding:2px;
+  margin:2px;
+  border:1px solid #888;
+}
