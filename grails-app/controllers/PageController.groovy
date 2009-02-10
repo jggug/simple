@@ -94,7 +94,6 @@ class PageController {
 
   def save = {
     def page = new Page()
-    //println authUserDomain
     page.properties = params
     page.created =authUserDomain
     page.updated =authUserDomain
