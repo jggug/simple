@@ -40,7 +40,7 @@ security {
 	authorityField = 'authority'
 
 	/** use RequestMap from DomainClass */
-	useRequestMapDomainClass = true
+	useRequestMapDomainClass = false
 	/** Requestmap domain class (if useRequestMapDomainClass = true) */
 	requestMapClass = "Requestmap"
 	requestMapPathField = 'url'
@@ -51,18 +51,17 @@ security {
 	 * see example below
 	 */
 
-	/*
 	requestMapString = """
-		CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
-		PATTERN_TYPE_APACHE_ANT
-
-		/login/**=IS_AUTHENTICATED_ANONYMOUSLY
-		/admin/**=ROLE_USER
-		/book/test/**=IS_AUTHENTICATED_FULLY
-		/book/**=ROLE_SUPERVISOR
-		/**=IS_AUTHENTICATED_ANONYMOUSLY
-	"""
-	*/
+    CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+    PATTERN_TYPE_APACHE_ANT
+    
+    /login/**=IS_AUTHENTICATED_ANONYMOUSLY
+    /role/**=ROLE_SUPERVISOR,ROLE_ADMIN
+    /user/**=ROLE_SUPERVISOR,ROLE_ADMIN
+    /requestmap/**=ROLE_SUPERVISOR,ROLE_ADMIN
+    /create/**=ROLE_USER
+    /edit/**=ROLE_USER
+  """
 
 	/**
 	 * To use email notification for user registration, set the following userMail to
