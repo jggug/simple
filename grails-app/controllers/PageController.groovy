@@ -118,7 +118,7 @@ class PageController {
   def lastUpdate={
     def contextPath=CH.config.grails.serverURL
     def feedUrl=contextPath+"/page/lastUpdated"
-    def lastPages=Page.list(max:10,order:"lastUpdated")
+    def lastPages=Page.list(max:10,sort:"lastUpdated",order:"desc")
 
     render(feedType:"rss", feedVersion:"2.0") {
       title="Simple LastUpdated"
