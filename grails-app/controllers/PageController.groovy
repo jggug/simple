@@ -1,4 +1,6 @@
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+import java.net.URLDecoder
+import java.net.URLEncoder
 
 class PageController {
   //def index = { redirect(action:findByTitle,params:params) }
@@ -136,7 +138,29 @@ class PageController {
     }
   }
   
-  def preview ={
+  /** 編集プレビュー表示用 */
+  def preview={
     [msg:params.body]
+  }
+  
+  /** ページツリー表示 */
+  def pageTree={
+  }
+  
+  def pageTreeDetail={
+    def ret=[]
+    if(params.dir) {
+      def pageId=params.dir.replaceAll("/","").trim()
+      def page=Page.get(pageId)
+      if(page) {
+        page.pages?.sort{it.title}.each {
+          ret << it
+        }
+      }
+    } else {
+      ret=Page.findAllByPageIsNull()
+    }
+    
+    return [pages:ret]
   }
 }

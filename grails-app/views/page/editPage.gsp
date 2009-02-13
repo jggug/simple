@@ -53,17 +53,26 @@ def modeString=(mode=="edit")?"編集":"追加"
         <span class="button"><input class="save" type="submit" value="Create" /></span>
       </g:else>
       <span class="button">
-        <input type="button" onclick="updatePreview();return false;" class="preview" value="Preview" />          
+        <input type="button" id="previewButton" class="preview" value="Preview" />          
       </span>
     </div>
     </g:form>
     
     <script language="javascript">
-      var updatePreview=function(){
-        var params=$("contents").serialize();
-        new Ajax.Updater("preview","${createLink(controller:'page',action:'preview')}",
-          {asynchronous:true,evalScripts:true,parameters:params});
-      };
+      $(document).ready(function() {
+        // プレビューボタンアクション
+        $("#previewButton").click(function(){
+          var params=$("form").serialize();
+          $.ajax({
+            url:"${createLink(controller:'page',action:'preview')}",
+            type:"post",
+            data:(params),
+            success: function(request) {
+              $('#preview').html(request);
+            }
+          });
+        });
+      });
     </script>
     <div id="preview"></div>
   </div>

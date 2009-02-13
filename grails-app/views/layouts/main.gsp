@@ -16,8 +16,8 @@
   <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'wiki.css')}" />
   <link rel="shortcut icon" href="${createLinkTo(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
   <link href="${feedUrl}" title="RSS 2.0" type="application/rss+xml" rel="alternate"/>
+  <script src="${createLinkTo(dir:'js',file:'jquery-1.3.1.min.js')}"></script>
   <g:layoutHead />
-  <g:javascript library="prototype" />
 </head>
 <body>
   <div id="spinner" class="spinner" style="display:none;">
@@ -32,13 +32,15 @@
             <g:loggedInUserInfo field="userRealName">ゲスト</g:loggedInUserInfo><span style="font-size:10px;">さん</span>
           </div>
           <g:isLoggedIn>
-          <div style="font-size:10px;">
-            &nbsp;&nbsp;<g:link controller="logout" style="color:white;">(ログアウト)</g:link>
-            [<g:link controller="register" action="edit" style="color:white;">登録情報編集</g:link>]
-          </div>
+            <div style="font-size:10px;">
+              <a onclick="window.open('${createLink(controller:'page',action:'pageTree')}')" href="#" style="color:white">ページ一覧</a>
+              &nbsp;&nbsp;<g:link controller="logout" style="color:white;">(ログアウト)</g:link>
+              [<g:link controller="register" action="edit" style="color:white;">登録情報編集</g:link>]
+            </div>
           </g:isLoggedIn>
           <g:isNotLoggedIn>
             <div style="font-size:10px;">
+              <a onclick="window.open('${createLink(controller:'page',action:'pageTree')}')" href="#" style="color:white">ページ一覧</a>
               <g:link controller="login" style="color:white;">(ログイン)</g:link>
               [<g:link controller="register" style="color:white;">登録</g:link>]
             </div>
