@@ -243,27 +243,25 @@ td, th {
 
 /** パンくず */
 #crumbs {
-  padding:0;
+  padding:2px 0 0 0;
   margin:0;
-  height:2.3em;
-  border:1px solid #dedede;
+  height:1.4em;
+  border:0px solid #dedede;
 }
 #crumbs li {
   list-style-type:none;
   float:left;
-  line-height:2.3em;
+  font-size: 0.8em;
   color:#777;
-  padding-left:.75em;
+  padding-left:3px;
 }   
 #crumbs li a {
   background:url(../images/crumbs.gif) no-repeat right center;
   display:block;
-  padding:0 15px 0 0;
+  padding:0 12px 0 0;
 }             
 #crumbs li a:link, #crumbs li a:visited {
-  color:#777;
-  text-decoration:none;
+  text-decoration:underline;
 } 
 #crumbs a:link, #crumbs a:visited, #crumbs li a:hover, #crumbs li a:focus {
-  color:#dd2c0d;
 }
