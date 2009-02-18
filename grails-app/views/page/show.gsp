@@ -44,7 +44,7 @@
               <ul style="margin-top:5px">
               <g:each var="p" in="${page.pages?.sort{it.title}}">
                   <li>
-                    <a href="${createLinkTo(url:'/')}/display/${p.title}">
+                    <a href="${createLinkTo(url:'/')}/display/${p.title.encodeAsURL()}">
                     ${p.title?.encodeAsHTML()}</a>
                   </li>
               </g:each>

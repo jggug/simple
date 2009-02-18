@@ -5,8 +5,8 @@ import java.net.URLEncoder
 class PageController {
   //def index = { redirect(action:findByTitle,params:params) }
 
-  //def wikiEngine
-  //def wikiContext
+  def wikiEngine
+  def wikiContext
 
   def findByTitle = {
     def toppage = CH.config?.simple?.contents?.toppage
@@ -121,20 +121,35 @@ class PageController {
     def contextPath=CH.config.grails.serverURL
     def feedUrl=contextPath+"/page/lastUpdated"
     def lastPages=Page.list(max:10,sort:"lastUpdated",order:"desc")
-
+    def contentTitle=CH.config?.simple?.contents?.title?:""
     render(feedType:"rss", feedVersion:"2.0") {
-      title="Simple LastUpdated"
+      
+      title="${contentTitle} Wiki LastUpdated"
       link=feedUrl
-      description="最終更新履歴"
+      description="${contentTitle} Wiki 最終更新履歴"
 
       lastPages.each { page ->
         entry(page.title){
           author=page.updated ? page.updated.username : "不明"
           publishedDate=page.lastUpdated
           link=contextPath+"/display/${page.title}"
-          page.body
+          showWiki(page.id,page.body)
         }
       }
+    }
+  }
+  
+  //TODO 何故かTagLibの再利用ができないので....
+  def showWiki(attrs, body){
+    def content = body
+    def pageId = attrs?:"0";
+    content=content.replaceAll(/\r\n|\r|\n/,"\n")
+    if(wikiEngine){
+      def text = wikiEngine.render(content.trim(),""+pageId, wikiContext)
+      return text
+    }else{
+      println "wikiEngine ERROR"
+      return ""
     }
   }
   
