@@ -82,7 +82,7 @@ select {
    padding: 2px 2px 2px 0;
 }
 textarea {
-	vertical-align: top;
+  vertical-align: top;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -94,7 +94,7 @@ input:focus, select:focus, textarea:focus {
 .nav {
     background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
     border: 1px solid #ccc;
-    border-style: solid none solid none;	
+    border-style: solid none solid none;  
     margin-top: 5px;
     padding: 7px 12px;
 }
@@ -147,10 +147,10 @@ div.errors {
 }
 div.errors ul {
     list-style: none;
-    padding: 0;	
+    padding: 0; 
 }
 div.errors li {
-	background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
+  background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
     line-height: 16px;
     padding-left: 30px;
 }
@@ -239,4 +239,31 @@ td, th {
   padding:0 0 0 3;
   border-bottom:2px solid #3C78B5;
   border-left:7px solid #3C78B5;
+}
+
+/** パンくず */
+#crumbs {
+  padding:0;
+  margin:0;
+  height:2.3em;
+  border:1px solid #dedede;
+}
+#crumbs li {
+  list-style-type:none;
+  float:left;
+  line-height:2.3em;
+  color:#777;
+  padding-left:.75em;
+}   
+#crumbs li a {
+  background:url(../images/crumbs.gif) no-repeat right center;
+  display:block;
+  padding:0 15px 0 0;
+}             
+#crumbs li a:link, #crumbs li a:visited {
+  color:#777;
+  text-decoration:none;
+} 
+#crumbs a:link, #crumbs a:visited, #crumbs li a:hover, #crumbs li a:focus {
+  color:#dd2c0d;
 }

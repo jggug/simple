@@ -19,18 +19,15 @@ class SimpleWikiTagLib {
   /** パンくずの表示 */
   def topicPath = { attrs, body ->
     if(attrs.page) {
-      out << "<div class='topicPath'>"
+      out << "<ul id='crumbs'>"
       def parentList=parentLink(attrs.page).reverse()
       parentList.eachWithIndex{ title,idx ->
-        out << "<a href='${createLinkTo(url:'/')}/display/${title}'>"
+        out << "<li><a href='${createLinkTo(url:'/')}/display/${title}'>"
         out << title
-        out << "</a>"
-        if((parentList.size()-1)!=idx){
-          out << "&nbsp;>&nbsp;"
-        }
+        out << "</a></li>"
       }
       
-      out << "</div>"
+      out << "</ul>"
     }
   }
 
