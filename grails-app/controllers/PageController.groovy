@@ -132,7 +132,7 @@ class PageController {
         entry(page.title){
           author=page.updated ? page.updated.username : "不明"
           publishedDate=page.lastUpdated
-          link=contextPath+"/display/${page.title}"
+          link=contextPath+"/display/${page.title.encodeAsURL()}"
           showWiki(page.id,page.body)
         }
       }
