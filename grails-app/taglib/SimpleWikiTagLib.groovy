@@ -22,9 +22,13 @@ class SimpleWikiTagLib {
       out << "<ul id='crumbs'>"
       def parentList=parentLink(attrs.page).reverse()
       parentList.eachWithIndex{ title,idx ->
-        out << "<li><a href='${createLinkTo(url:'/')}/display/${title}'>"
-        out << title
-        out << "</a></li>"
+        if((idx+1)==parentList.size()) {
+          out << "<li>${title}</li>"
+        } else {
+          out << "<li><a href='${createLinkTo(url:'/')}/display/${title}'>"
+          out << title
+          out << "</a></li>"
+        }
       }
       
       out << "</ul>"
