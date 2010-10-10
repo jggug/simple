@@ -1,0 +1,11 @@
+moved from http://code.google.com/p/gcrnagoya/
+
+Grails Simple Wiki grails.jpに使用している、Grailsで実装された簡単なWiki「Simple」です。 
+Wiki機能本体は、Grails.orgで公開されている、radeoxをベースにした、 GrailsWikiEngine?に若干の修正を加えた物を使用しています。
+
+
+* 最新のGrailsにアップグレード
+* Wiki部分をプラグイン化へ分離
+* 追加機能
+** 勉強会告知？
+** ニュース?
